@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMate - Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="overlay">
+            <div class="container d-flex justify-content-center align-items-center vh-100">
+                <div class="card login-card p-4 shadow-lg rounded">
+                    <div class="card-body">
+                        <h1 class="text-center fw-bold">TaskMate</h1>
+                        <h5 class="text-center mb-4">Sign in to your account</h5>
+                        <p class="text-center">Or <a href="signup.html" class="text-decoration-none">Click here to
+                                Register</a></p>
+
+                        <form id="loginForm" novalidate>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email address</label>
+                                <input type="email" id="email" class="form-control" placeholder="Enter your email"
+                                    required>
+                                <div class="invalid-feedback">Please enter a valid email.</div>
+                            </div>
+                            <div class="mb-3 position-relative">
+                                <label for="password" class="form-label">Password</label>
+                                <div class="input-group">
+                                    <input type="password" id="password" class="form-control"
+                                        placeholder="Enter your password" required>
+                                    <button type="button" class="btn btn-outline-secondary toggle-password"
+                                        title="Toggle Password Visibility">
+                                        <i class="bi bi-eye-slash"></i>
+                                    </button>
+                                    <div class="invalid-feedback">Password is required.</div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <input type="checkbox" id="rememberMe">
+                                    <label for="rememberMe">Remember me</label>
+                                </div>
+                                <a href="reset.html" class="text-decoration-none">Forgot your password?</a>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">Sign in</button>
+                        </form>
+
+                        <hr class="my-3">
+                        <p class="text-center mb-3">Or continue with</p>
+                        <div class="d-flex justify-content-center gap-2">
+                            <button class="btn btn-light border" id="googleLoginBtn">
+                                <i class="bi bi-google"></i> Google
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner Modal -->
+    <div class="modal fade" id="loadingModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-transparent border-0 shadow-none">
+                <div class="d-flex justify-content-center align-items-center p-5">
+                    <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="js/login.js"></script>
+</body>
+
+</html>

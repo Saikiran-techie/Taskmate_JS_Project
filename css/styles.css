@@ -1,0 +1,188 @@
+/* Base styles */
+body {
+    background-color: #0f172a;
+    color: #f8f9fa;
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.hero-section {
+    min-height: 130vh;
+    padding-top: 120px;
+    background: url('../assets/images/hero-bg.png') no-repeat center center/cover;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+    padding-bottom:50px;
+}
+
+.hero-section h1{
+    font-size: 3.5rem;
+}
+
+.about-bg {
+    background-color: #1e293b;
+}
+
+h1,
+h2,
+h3,
+h5 {
+    font-weight: 700;
+}
+
+p {
+    margin-bottom: 0.75rem;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #1e293b;
+    padding: 0.75rem 12px;
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+.nav-link {
+    font-size: 1rem;
+}
+
+.nav-link.active,
+.nav-link:hover {
+    color: #0dcaf0 !important;
+}
+
+/* Hero Section */
+.hero-section .lead {
+    font-size: 1.25rem;
+}
+
+.hero-section .btn-lg {
+    padding: 0.75rem 2rem;
+    font-size: 1.125rem;
+}
+
+/* Feature Cards */
+.feature-card {
+    background-color: #273549;
+    border-radius: 1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+}
+
+.feature-card:hover {
+    transform: translateY(-6px);
+    background-color: #334155;
+}
+
+.feature-card i {
+    transition: color 0.3s ease;
+}
+
+.feature-card:hover i {
+    color: #0dcaf0 !important;
+}
+
+/* About Section Specific */
+.about-bg p.lead {
+    font-size: 1.15rem;
+}
+
+.about-bg h3 {
+    font-size: 2rem;
+}
+
+.about-bg .feature-card {
+    background-color: #334155;
+}
+
+.about-bg .feature-card:hover {
+    background-color: #3b4759;
+}
+
+/* Footer */
+footer {
+    background-color: #0f172a;
+    border-top: 1px solid #334155;
+    padding-top: 1rem;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .hero-section {
+        padding-top: 120px;
+        padding-bottom: 30px;
+    }
+
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-section .lead {
+        font-size: 1.05rem;
+    }
+
+    .about-bg h2 {
+        font-size: 2rem;
+    }
+
+    .feature-card {
+        padding: 1.5rem;
+    }
+
+    .feature-card i {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-section h1 {
+        font-size: 2.1rem;
+    }
+
+    .hero-section .btn-lg {
+        font-size: 1rem;
+        padding: 0.6rem 1.5rem;
+    }
+
+    .about-bg h3 {
+        font-size: 1.5rem;
+    }
+
+    .about-bg .feature-card {
+        padding: 1rem;
+    }
+}
+
+/* Custom Utility Colors */
+.text-purple {
+    color: #c084fc !important;
+}
+
+/* Custom scrollbar for Webkit browsers (optional aesthetic) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}

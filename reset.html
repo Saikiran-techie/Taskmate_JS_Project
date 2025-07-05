@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+</head>
+
+<body>
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h3 class="text-center">Reset Password</h3>
+            <form id="reset-form" class="mt-4">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your registered email"
+                        required>
+                </div>
+                <div class="mb-3 position-relative">
+                    <label for="new-password" class="form-label">New Password</label>
+                    <div class="input-group password-wrapper">
+                        <input type="password" id="new-password" class="form-control" placeholder="Enter new password">
+                        <!-- <span class="input-group-text toggle-password position-absolute end-0">
+                            <i class="bi bi-eye-slash"></i>
+                        </span> -->
+                    </div>
+                </div>
+                <div class="mb-3 position-relative">
+                    <label for="confirm-password" class="form-label">Confirm New Password</label>
+                    <div class="input-group password-wrapper">
+                        <input type="password" id="confirm-password" class="form-control"
+                            placeholder="Confirm new password">
+                        <!-- <span class="input-group-text toggle-password position-absolute end-0">
+                            <i class="bi bi-eye-slash"></i>
+                        </span> -->
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Reset Password</button> <br><br>
+                <p><a href="login.html">Back to Login</a></p>
+            </form>
+        </div>
+    </div>
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js"></script> -->
+    <script type="module" src="js/reset.js"></script>
+</body>
+
+</html>

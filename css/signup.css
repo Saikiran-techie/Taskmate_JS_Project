@@ -1,0 +1,114 @@
+/* Base Reset & Body */
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: 'Arial', sans-serif;
+    background: #f5f5f5;
+}
+
+/* Signup Page Overlay */
+.signup-page .overlay {
+    min-height: 120vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Signup Card Styles */
+.signup-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 450px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Headings */
+.signup-card h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #343a40;
+    margin-bottom: 1rem;
+}
+
+.signup-card h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #343a40;
+}
+
+/* Form Labels */
+.signup-card .form-label {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Password Toggle Button */
+.input-group .toggle-password {
+    cursor: pointer;
+    z-index: 2;
+    background-color: #e9ecef;
+    border:#343a40 1px solid;
+}
+
+.toggle-password i {
+    color: #343a40;
+    font-size: 1.2rem;
+}
+
+/* Primary Signup Button */
+.signup-card .btn-primary {
+    background-color: #6c63ff;
+    border: none;
+    font-weight: bold;
+    padding: 0.75rem;
+    transition: background-color 0.3s ease;
+}
+
+.signup-card .btn-primary:hover {
+    background-color: #5147d8;
+}
+
+/* Google Button */
+.signup-card .btn-light {
+    background-color: #f8f9fa;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.signup-card .btn-light:hover {
+    background-color: #e2e6ea;
+}
+
+/* Google Icon Color */
+.bi-google {
+    color: #db4437;
+}
+
+/* Invalid Feedback Text */
+.signup-card .invalid-feedback {
+    display: none;
+    color: red;
+    font-size: 0.8rem;
+}
+
+.signup-card input:invalid~.invalid-feedback {
+    display: block;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+    .signup-card {
+        padding: 1.5rem;
+    }
+
+    .signup-card h1 {
+        font-size: 1.5rem;
+    }
+
+    .signup-card h3 {
+        font-size: 1.3rem;
+    }
+}

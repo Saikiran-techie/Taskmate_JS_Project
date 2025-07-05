@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMate - Smart Task Management</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+    <!-- Loading Spinner -->
+    <div id="loader" class="loader-container">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="assets/images/TaskMate.png" alt="Taskmate-Logo" class="logo" id="logo">
+        </div>
+        <div class="sidebar-menu">
+            <nav>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="#dashboard" class="nav-link" data-view="dashboard"><i class="bi bi-house-door"></i>
+                            Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tasks" class="nav-link" data-view="tasks"><i class="bi bi-list-task"></i> Tasks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#projects" class="nav-link" data-view="projects"><i class="bi bi-kanban"></i>
+                            Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#teamBoards" class="nav-link" data-view="teamBoards"><i class="bi bi-people"></i> Team
+                            Boards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#notes" class="nav-link" data-view="notes"><i class="bi bi-journal-text"></i> Notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#chat" class="nav-link" data-view="chat"><i class="bi bi-chat"></i> Team Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#settings" class="nav-link" data-view="settings"><i class="bi bi-gear"></i>
+                            Settings</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="sidebar-footer">
+            <button class="btn btn-outline-danger w-100" id="logoutBtn"><i class="bi bi-box-arrow-right"></i>
+                Logout</button>
+        </div>
+    </div>
+
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- TopNavbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top border-bottom">
+            <div class="container-fluid">
+                <button class="btn btn-outline-secondary d-lg-none me-2" id="hamburgerBtn" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas">
+                    <i class="bi bi-list"></i>
+                </button>
+
+
+                <form class="d-flex me-auto" style="flex: 0 0 400px;">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                        <input class="form-control" type="search" id="taskSearchInput" placeholder="Search tasks...">
+                    </div>
+                </form>
+                <button class="btn btn-outline-secondary me-2" id="filterSortBtn">
+                    <i class="bi bi-funnel"></i>
+                </button>
+
+
+                <div class="nav-item dropdown">
+                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">
+                        <i class="bi bi-bell"></i>
+                        <span class="badge bg-danger rounded-pill" id="notificationCount">0</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end" id="notificationsList">
+                        <div class="dropdown-header">Notifications</div>
+                    </div>
+                </div>
+
+                <div class="nav-item dropdown">
+                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">
+                        <img id="navProfileAvatar" src="" class="rounded-circle" width="32" height="32">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#profileModal">View
+                                Profile</button></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Offcanvas Sidebar for Mobile -->
+        <div class="offcanvas offcanvas-start" id="sidebarOffcanvas">
+            <div class="offcanvas-header">
+                <img src="assets/images/TaskMate.png" alt="Taskmate-Logo" class="logo" id="logo">
+
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a href="#dashboard" class="nav-link" data-view="dashboard"><i class="bi bi-house-door"></i>
+                            Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tasks" class="nav-link" data-view="tasks"><i class="bi bi-list-task"></i> Tasks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#projects" class="nav-link" data-view="projects"><i class="bi bi-kanban"></i>
+                            Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#teamBoards" class="nav-link" data-view="teamBoards"><i class="bi bi-people"></i> Team
+                            Boards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#notes" class="nav-link" data-view="notes"><i class="bi bi-journal-text"></i> Notes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#chat" class="nav-link" data-view="chat"><i class="bi bi-chat"></i> Team Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#settings" class="nav-link" data-view="settings"><i class="bi bi-gear"></i>
+                            Settings</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="offcanvas-footer text-center">
+                <button class="btn btn-outline-danger w-100" id="offcanvaslogoutBtn"><i
+                        class="bi bi-box-arrow-right"></i>
+                    Logout</button>
+            </div>
+        </div>
+
+        <!-- Profile Modal -->
+        <div class="modal fade" id="profileModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">My Profile</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <img id="profileModalAvatar" src="" class="rounded-circle mb-3" width="80" height="80">
+                        <input type="file" class="form-control mb-2" id="profileImageInput">
+                        <button class="btn btn-primary mb-3" id="uploadProfileImageBtn">Upload</button>
+                        <p><strong>Name:</strong> <span id="profileUserName"></span></p>
+                        <p><strong>Email:</strong> <span id="profileUserEmail"></span></p>
+                        <div>
+                            <label>Activity Status:</label>
+                            <div class="d-flex justify-content-center gap-2 mb-2">
+                                <button class="btn btn-outline-success status-btn"
+                                    data-status="Available">Available</button>
+                                <button class="btn btn-outline-warning status-btn" data-status="In Meeting">In
+                                    Meeting</button>
+                                <button class="btn btn-outline-secondary status-btn" data-status="Away">Away</button>
+                            </div>
+                            <p><strong>Status:</strong> <span id="profileStatus"></span></p>
+                        </div>
+                        <button class="btn btn-primary mt-3" id="saveProfileBtn">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Content Area of all views-->
+        <div class="content-area p-4">
+
+            <!-- Dashboard View -->
+            <div id="dashboard" class="view-section active">
+                <div class="mb-4">
+                    <h2 class="fw-bold">👋 Welcome, <span id="dashboardUserName">User</span>!</h2>
+                    <p class="lead text-muted">Your personal workspace to manage tasks, track projects, and stay
+                        organized with your
+                        team in real-time.</p>
+                    <hr class="my-4">
+                </div>
+
+                <div class="mb-4">
+                    <p class="text-secondary fs-5">From this dashboard, you can:</p>
+                    <ul class="list-unstyled text-secondary fs-5">
+                        <li>✅ Quickly check task statuses and deadlines</li>
+                        <li>📝 Manage your notes and project details</li>
+                        <li>📨 Chat and collaborate with your team</li>
+                        <li>📣 View important reminders and notifications</li>
+                    </ul>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <!-- Task Overview -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">Task Overview</h4>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="stat-card bg-primary text-white">
+                                            <i class="bi bi-list-check"></i>
+                                            <h3 id="totalTasks">0</h3>
+                                            <p>Total Tasks</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="stat-card bg-warning text-white">
+                                            <i class="bi bi-clock"></i>
+                                            <h3 id="pendingTasks">0</h3>
+                                            <p>Pending</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="stat-card bg-success text-white">
+                                            <i class="bi bi-check2-circle"></i>
+                                            <h3 id="completedTasks">0</h3>
+                                            <p>Completed</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right side Quick Actions and Deadlines -->
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h4 class="card-title text-center">Quick Actions</h4>
+                                <hr>
+                                <div class="quick-actions">
+                                    <button class="btn btn-primary mb-2 w-100" data-bs-toggle="modal"
+                                        data-bs-target="#addTaskModal">
+                                        <i class="bi bi-plus-circle"></i> New Task
+                                    </button>
+                                    <button class="btn btn-info mb-2 w-100" data-bs-toggle="modal"
+                                        data-bs-target="#addNoteModal">
+                                        <i class="bi bi-journal-plus"></i> New Note
+                                    </button>
+                                    <button class="btn btn-success mb-2 w-100" data-bs-toggle="modal"
+                                        data-bs-target="#addReminderModal">
+                                        <i class="bi bi-alarm"></i> Set Reminder
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kanban Board -->
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title text-center">Task Board</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h6 class="text-muted text-center">To Do</h6>
+                                <div id="dashboardKanbanTodoTasks" class="kanban-column">
+                                    <!-- To Do tasks dynamically inserted here -->
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h6 class="text-muted text-center">In Progress</h6>
+                                <div id="dashboardKanbanInProgressTasks" class="kanban-column">
+                                    <!-- In progress tasks dynamically inserted here -->
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <h6 class="text-muted text-center">Completed</h6>
+                                <div id="dashboardKanbanCompletedTasks" class="kanban-column">
+                                    <!-- Completed tasks dynamically inserted here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modals -->
+            <!-- Add Task Modal -->
+            <div class="modal fade" id="addTaskModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add New Task</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addTaskForm">
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" id="teamName" placeholder="Team Name"
+                                        required>
+                                </div>
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" id="projectName" placeholder="Project Name"
+                                        required>
+                                </div>
+                                <div class="mb-2">
+                                    <input type="text" class="form-control" id="taskTitle" placeholder="Task Title"
+                                        required>
+                                </div>
+                                <div class="mb-2">
+                                    <textarea class="form-control" id="taskDescription" placeholder="Description"
+                                        rows="3"></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="date" class="form-control" id="dueDate" required>
+                                    </div>
+                                    <div class="col">
+                                        <select class="form-select" id="priority">
+                                            <option value="Low">Low</option>
+                                            <option value="Medium">Medium</option>
+                                            <option value="High">High</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 mt-3">Add Task</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task View/Edit Modal -->
+            <div class="modal fade" id="taskDetailsModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Task Details</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <h6 id="detailTitle"></h6>
+                            <p><b>Team:</b> <span id="detailTeam"></span></p>
+                            <p><b>Project:</b> <span id="detailProject"></span></p>
+                            <p><b>Due:</b> <span id="detailDue"></span></p>
+                            <p><b>Description:</b> <span id="detailDescription"></span></p>
+                            <p><b>Priority:</b> <span id="detailPriority"></span></p>
+                            <div class="mb-2">
+                                <label>Status</label>
+                                <select class="form-select" id="detailStatus">
+                                    <option value="todo">Todo</option>
+                                    <option value="inprogress">In Progress</option>
+                                    <option value="completed">Completed</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-success w-100" id="updateTaskStatus">Update Status</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Note Modal -->
+            <div class="modal fade" id="addNoteModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add New Note</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addNoteForm">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="noteProjectTitle"
+                                        placeholder="Project Title" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="noteTitle" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Content</label>
+                                    <textarea class="form-control" id="noteContentText" rows="5"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Add Note</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Reminder Modal -->
+            <div class="modal fade" id="addReminderModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Set Reminder</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addReminderForm">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="reminderProjectTitle"
+                                        placeholder="Project Title" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Reminder Title</label>
+                                    <input type="text" class="form-control" id="reminderTitle" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Date & Time</label>
+                                    <input type="datetime-local" class="form-control mb-2" id="reminderDateTime"
+                                        required>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Set Reminder</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tasks View -->
+            <div id="tasks" class="view-section">
+                <h3 class="text-center">TASKS</h3>
+                <hr>
+                <div class="d-flex justify-content-end align-items-center mb-4">
+                    <div class="task-controls">
+                        <div class="btn-group me-2">
+                            <button class="btn btn-outline-secondary" id="filterBtn">
+                                <i class="bi bi-funnel"></i> Filter
+                            </button>
+                            <button class="btn btn-outline-secondary" id="sortBtn">
+                                <i class="bi bi-sort-down"></i> Sort
+                            </button>
+                        </div>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTaskModal">
+                            <i class="bi bi-plus"></i> New Task
+                        </button>
+                    </div>
+                </div>
+
+                <div class="task-board">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="task-column">
+                                <h5 class="text-muted mb-3 text-center">To Do</h5>
+                                <hr>
+                                <div class="task-list" id="kanbanTodoTasks">
+                                    <!-- Todo tasks will be inserted here -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="task-column">
+                                <h5 class="text-muted mb-3 text-center">In Progress</h5>
+                                <hr>
+                                <div class="task-list" id="kanbanInProgressTasks">
+                                    <!-- In progress tasks will be inserted here -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="task-column">
+                                <h5 class="text-muted mb-3 text-center">Completed</h5>
+                                <hr>
+                                <div class="task-list" id="kanbanCompletedTasks">
+                                    <!-- Completed tasks will be inserted here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects View -->
+            <div id="projects" class="view-section">
+                <h2 class="text-center">Projects</h2>
+                <hr>
+                <div class="d-flex justify-content-end align-items-center mb-4">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProjectModal">
+                        <i class="bi bi-plus-circle"></i> New Project
+                    </button>
+                </div>
+
+                <div class="row g-3 mb-4 text-center" id="projectsSummaryCards">
+                    <div class="col-md-4">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-center mb-2">
+                                    <i class="bi bi-kanban-fill text-primary fs-1 me-2"></i>
+                                </div>
+                                <h5 class="card-title text-muted">Total Projects</h5>
+                                <h2 class="fw-bold text-primary" id="totalProjectsCount">0</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-center mb-2">
+                                    <i class="bi bi-hourglass-split text-warning fs-1 me-2"></i>
+                                </div>
+                                <h5 class="card-title text-muted">In Progress</h5>
+                                <h2 class="fw-bold text-warning" id="inProgressProjectsCount">0</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-center mb-2">
+                                    <i class="bi bi-check-circle-fill text-success fs-1 me-2"></i>
+                                </div>
+                                <h5 class="card-title text-muted">Completed</h5>
+                                <h2 class="fw-bold text-success" id="completedProjectsCount">0</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="projectsContainer">
+                    <!-- Project cards will be dynamically inserted here -->
+                </div>
+            </div>
+
+            <!-- Add Project Modal -->
+            <div class="modal fade" id="addProjectModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add New Project</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addProjectForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Project Title</label>
+                                    <input type="text" class="form-control" id="projectTitle" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Owner</label>
+                                    <input type="text" class="form-control" id="projectOwner" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Assign People</label>
+                                    <input type="text" class="form-control" id="projectPeople">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Due Date</label>
+                                    <input type="date" class="form-control" id="projectDueDate">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Status</label>
+                                    <select class="form-select" id="projectStatus">
+                                        <option value="Planned">Planned</option>
+                                        <option value="In Progress">In Progress</option>
+                                        <option value="Completed">Completed</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Priority</label>
+                                    <select class="form-select" id="projectPriority">
+                                        <option value="Low">Low</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="High">High</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control" id="projectDescription" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Add Project</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Boards View -->
+            <div id="teamBoards" class="view-section">
+                <h2 class="text-center">Team Boards</h2>
+                <hr>
+                <div class="d-flex justify-content-end align-items-center mb-4">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBoardModal">
+                        <i class="bi bi-plus"></i> New Board
+                    </button>
+                </div>
+
+                <div class="row" id="boardsList">
+                    <!-- Team boards will be added dynamically here -->
+                </div>
+            </div>
+
+            <!-- Add Team Board Modal -->
+            <div class="modal fade" id="addBoardModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add New Team Board</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="addBoardForm">
+                                <div class="mb-3">
+                                    <label class="form-label">Board Name</label>
+                                    <input type="text" class="form-control" id="boardName" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Owner</label>
+                                    <input type="text" class="form-control" id="boardOwner" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Members</label>
+                                    <input type="text" class="form-control" id="boardMembers"
+                                        placeholder="Comma-separated names" />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Status</label>
+                                    <select class="form-select" id="boardStatus">
+                                        <option value="Active">Active</option>
+                                        <option value="On Hold">On Hold</option>
+                                        <option value="Archived">Archived</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Description</label>
+                                    <textarea class="form-control" id="boardDescription" rows="3"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Add Board</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notes View -->
+            <div id="notes" class="view-section">
+                <h2 class="mb-0 text-center">Notes</h2>
+                <hr>
+                <div class="d-flex justify-content-end align-items-center mb-4">
+                    <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addNoteModal">
+                        <i class="bi bi-journal-plus"></i> Add Note
+                    </button>
+                </div>
+
+                <div id="notesList">
+                    <!-- Notes cards will be loaded here -->
+                </div>
+            </div>
+
+
+            <!-- Chat View -->
+            <div id="chat" class="view-section">
+                <h2 class="text-center">Team Chat</h2>
+                <hr>
+                <div class="chat-container">
+                    <div class="chat-sidebar">
+                        <div class="chat-header d-flex align-items-center px-2 py-4">
+                            <input type="text" id="chatSearch" class="form-control form-control-sm me-2"
+                                placeholder="Search...">
+                            <i class="bi bi-search"></i>
+                        </div>
+                        <div class="chat-channels overflow-auto" id="chatChannels" style="max-height: 400px;">
+                            <!-- User list populated here -->
+                        </div>
+                    </div>
+                    <div class="chat-main">
+                        <div class="chat-messages" id="chatMessages">
+                            <!-- Chat messages will be inserted here -->
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="messageInput" class="form-control" placeholder="Type a message...">
+                            <button class="btn btn-primary" id="sendMessage">
+                                <i class="bi bi-send"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings View -->
+            <div id="settings" class="view-section container py-4">
+                <h2 class="mb-4">Settings</h2>
+                <div class="list-group d-flex gap-3">
+
+                    <button class="list-group-item list-group-item-action d-flex align-items-center" id="profileBtn">
+                        <i class="bi bi-person-circle me-2"></i> Profile Settings >
+                    </button>
+                    
+                    <button class="list-group-item list-group-item-action d-flex align-items-center" id="themeBtn">
+                        <i class="bi bi-palette2 me-2"></i> Appearance >
+                    </button>
+                    
+                    <button class="list-group-item list-group-item-action d-flex align-items-center" id="securityBtn">
+                        <i class="bi bi-shield-lock me-2"></i> Security >
+                    </button>                      
+
+                </div>
+            </div>
+
+            <!-- Profile Modal -->
+            <div class="modal fade" id="profileModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"><i class="bi bi-person-circle me-2"></i> Profile Settings</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="text-center mb-3">
+                                <img id="settingsProfileImage" src="https://via.placeholder.com/100" class="rounded-circle" width="100" height="100">
+                                    
+                                <div class="mt-2">
+                                    <input type="file" id="settingsImageInput" accept="image/*">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Username</label>
+                                <input type="text" class="form-control" id="settingsUsername">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="settingsEmail" disabled>
+                            </div>
+                            <button class="btn btn-primary w-100" id="updateProfileBtn">Update Profile</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Theme Modal -->
+            <div class="modal fade" id="themeModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"><i class="bi bi-palette2 me-2"></i> Appearance</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="d-grid gap-2">
+                                <button id="lightThemeBtn" class="btn btn-light border d-flex align-items-center">
+                                    <i class="bi bi-sun-fill me-2"></i> Light Theme
+                                </button>
+                                <button id="darkThemeBtn" class="btn btn-dark text-white d-flex align-items-center">
+                                    <i class="bi bi-moon-fill me-2"></i> Dark Theme
+                                </button>                                  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Modal -->
+            <div class="modal fade" id="securityModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title"><i class="bi bi-shield-lock me-2"></i> Security</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">New Password</label>
+                                <input type="password" class="form-control" id="newPassword">
+                            </div>
+                            <button class="btn btn-warning w-100" id="changePasswordBtn">Change Password</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="js/dashboard.js"></script>
+</body>
+
+</html>
