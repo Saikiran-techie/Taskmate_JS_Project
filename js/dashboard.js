@@ -939,7 +939,7 @@ window.signOutUser = async () => {
         console.error("Sign out error:", error);
         Swal.fire('Error', 'Failed to sign out', 'error');
     }
-}
+};
 
 // Sidebar Offcanvas Toggle
 const sidebar = document.getElementById('sidebar');
@@ -948,6 +948,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     if (hamburgerBtn) {
         hamburgerBtn.addEventListener('click', () => sidebar.classList.toggle('active'));
+    }
+
+    // 👉 Logout button click listener
+    const logoutBtn = document.getElementById('offcanvaslogoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => signOutUser());
+    } else {
+        console.warn('Logout button not found in DOM');
     }
 });
 
